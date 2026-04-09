@@ -1,0 +1,95 @@
+// Angular Material — M2 Custom Theme
+@use '@angular/material' as mat;
+
+// 1. Include core styles (typography baseline, ripple, elevation, etc.)
+@include mat.core();
+
+// 2. Define color palettes
+$primary:   mat.define-palette(mat.$indigo-palette);
+$accent:    mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$warn:      mat.define-palette(mat.$red-palette);
+
+// 3. Build the light theme
+$app-theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent:  $accent,
+    warn:    $warn,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: 'Roboto, "Helvetica Neue", sans-serif',
+  ),
+  density: 0,
+));
+
+// 4. Emit component styles
+@include mat.all-component-themes($app-theme);
+
+/* Global Styles */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+/* Material Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Form validation styles */
+.ng-invalid.ng-touched {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: rgba(0, 0, 0, 0.12) !important;
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
