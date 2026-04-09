@@ -1,0 +1,26 @@
+<h2>{{ isEditMode ? 'Editar Usuário' : 'Novo Usuário' }}</h2>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div>
+    <label for="nome">Nome</label>
+    <input id="nome" formControlName="nome" type="text" />
+    <span *ngIf="form.get('nome')?.invalid && form.get('nome')?.touched">
+      Nome inválido (mínimo 2 caracteres).
+    </span>
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input id="email" formControlName="email" type="email" />
+    <span *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      Email inválido.
+    </span>
+  </div>
+  <div>
+    <label for="perfil">Perfil</label>
+    <select id="perfil" formControlName="perfil">
+      <option value="admin">Admin</option>
+      <option value="usuario">Usuário</option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="form.invalid">Salvar</button>
+  <a routerLink="/users">Cancelar</a>
+</form>

@@ -1,0 +1,26 @@
+<h2>Gestão de Usuários</h2>
+<a routerLink="/users/new">Novo Usuário</a>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Perfil</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.nome }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.perfil }}</td>
+      <td>
+        <a [routerLink]="['/users', user.id, 'edit']">Editar</a>
+        <button (click)="deleteUser(user.id)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p *ngIf="users.length === 0">Nenhum usuário encontrado.</p>
